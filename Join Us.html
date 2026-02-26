@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join Us - Friendship Forever</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    .section {
+      width: 90%;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .section h2 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      color: #444;
+      text-align: justify;
+    }
+    .highlight {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #FF4500;
+      margin: 30px 0;
+    }
+    @media (max-width: 1100px) {
+      .section {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" id="title" href="#">Friendship Forever</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="Main Page.html" target="_blank">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="Activities.html" target="_blank">Activities</a></li>
+          <li class="nav-item"><a class="nav-link" href="Members.html" target="_blank">Members</a></li>
+          <li class="nav-item"><a class="nav-link" href="About Us.html" target="_blank">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="Notice Board.html" target="_blank">Notice Board</a></li>
+          <li class="nav-item"><a class="nav-link special" href="Join Us.html" target="_blank">Join Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="Our Idols and inspirations.html" target="_blank">Our Idols and inspirations</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Welcome Banner -->
+  <div class="highlight">🌟 Become Part of Friendship Forever 🌟</div>
+
+  <!-- Why Join Section -->
+  <div class="section">
+    <h2>Why Join?</h2>
+    <p>
+      Friendship Forever is more than a group — it is a family bound by unity, knowledge, compassion, and resilience. 
+      By joining, you gain access to a supportive community where your voice matters, your ideas are valued, and your growth is celebrated. 
+      Members enjoy opportunities to learn, create, lead, and serve society while building lifelong friendships.
+    </p>
+  </div>
+
+  <!-- Expectations Section -->
+  <div class="section">
+    <h2>Member Expectations</h2>
+    <p>
+      As a member, you are expected to participate actively in discussions, respect diversity, contribute to activities, and uphold the group’s oath and anthem. 
+      Friendship Forever thrives when every member shares responsibility, supports one another, and embodies the values of unity and compassion.
+    </p>
+  </div>
+
+  <!-- How to Join Section -->
+  <div class="section">
+    <h2>How to Join</h2>
+    <p>
+      Joining is simple:
+      <ol>
+        <li>Fill out the membership form below.</li>
+        <li>Attend an introductory session to meet fellow members.</li>
+        <li>Take part in your first activity and experience the spirit of Friendship Forever.</li>
+      </ol>
+    </p>
+  </div>
+
+  <!-- Membership Form Section -->
+  <div class="section">
+    <h2>Membership Form</h2>
+    <form id="joinForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your full name">
+      </div>
+      <div class="mb-3">
+        <label for="gmail" class="form-label">G-mail Address</label>
+        <input type="email" class="form-control" id="gmail" placeholder="Enter your Gmail">
+      </div>
+      <div class="mb-3">
+        <label for="interest" class="form-label">Why are you interested?</label>
+        <textarea class="form-control" id="interest" rows="4" placeholder="Share your motivation"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="skill" class="form-label">Skill</label>
+        <input type="text" class="form-control" id="skill" placeholder="Enter your skill">
+      </div>
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact Number</label>
+        <input type="text" class="form-control" id="contact" placeholder="Enter your contact number">
+      </div>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="swear">
+        <label class="form-check-label" for="swear">
+          I solemnly swear to obey all the rules, uphold unity, respect diversity, and honor the spirit of Friendship Forever with sincerity and devotion.
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Application</button>
+      <p id="errorMsg" style="color:red; margin-top:10px; display:none;">⚠️ Please fill in all fields and agree to the rules before submitting.</p>
+    </form>
+  </div>
+
+  <!-- Closing Note -->
+  <div class="section">
+    <h2>🌟 Closing Note</h2>
+    <p>
+      Together we rise, together we endure, and together we build a legacy. 
+      Friendship Forever welcomes you with open arms — join us and be part of a journey that blends wisdom, compassion, and unity into a force that will inspire generations.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background-color:#74ebd5; padding:15px; text-align:center; margin-top:40px; border-top:2px solid #333;">
+    <p style="margin:0; font-size:14px; color:#333;">
+      © 2026 Friendship Forever. All rights reserved. <br>
+      Built by Orhan Ismail | Admin: Nasheed Tasnim-ul Raad <br>
+      Designer: Rayaan Tasnim
+    </p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Form Validation -->
+  <script>
+    document.getElementById("joinForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const gmail = document.getElementById("gmail").value.trim();
+      const interest = document.getElementById("interest").value.trim();
+      const skill = document.getElementById("skill").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+      const swear = document.getElementById("swear").checked;
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (name === "" || gmail === "" || interest === "" || skill === "" || contact === "" || !swear) {
+        errorMsg.style.display = "block";
+      } else {
+        errorMsg.style.display = "none";
+        window.location.href = "Membership.html"; // redirect after successful submission
+      }
+    });
+  </script>
+</body>
+</html>
