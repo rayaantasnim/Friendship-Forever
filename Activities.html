@@ -166,30 +166,35 @@
     </p>
   </div>
 
-  <!-- Interactive Section -->
-  <div class="section">
-    <h2>💡 Suggest an Activity</h2>
-    <p>
-      Have an idea for a new group activity? We value creativity and collaboration, so your suggestions
-      are always welcome. Whether it’s an educational workshop, a cultural celebration, or a community
-      outreach program, every idea has the potential to strengthen our bond and inspire growth.
-      Share your thoughts below and help shape the future of Friendship Forever.
+    <!-- Interactive Section -->
+<div class="section">
+  <h2>💡 Suggest an Activity</h2>
+  <p>
+    Have an idea for a new group activity? We value creativity and collaboration, so your suggestions
+    are always welcome. Whether it’s an educational workshop, a cultural celebration, or a community
+    outreach program, every idea has the potential to strengthen our bond and inspire growth.
+    Share your thoughts below and help shape the future of Friendship Forever.
+  </p>
+  <form id="activityForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Your Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter your name">
+    </div>
+    <div class="mb-3">
+      <label for="membership" class="form-label">Membership ID</label>
+      <input type="number" class="form-control" id="membership" placeholder="Enter your Membership ID">
+      <small id="membershipMsg" style="color:red;"></small>
+    </div>
+    <div class="mb-3">
+      <label for="activity" class="form-label">Activity Idea</label>
+      <textarea class="form-control" id="activity" rows="4" placeholder="Describe your activity idea"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" id="submitBtn">Submit Idea</button>
+    <p id="errorMsg" style="color:red; margin-top:10px; display:none;">
+      ⚠️ Please fill in all fields before submitting.
     </p>
-    <form id="activityForm">
-      <div class="mb-3">
-        <label for="name" class="form-label">Your Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter your name">
-      </div>
-      <div class="mb-3">
-        <label for="activity" class="form-label">Activity Idea</label>
-        <textarea class="form-control" id="activity" rows="4" placeholder="Describe your activity idea"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit Idea</button>
-      <p id="errorMsg" style="color:red; margin-top:10px; display:none;">
-        ⚠️ Please fill in both fields before submitting.
-      </p>
-    </form>
-  </div>
+  </form>
+</div>
 
   <!-- Reflection Section -->
   <div class="section">
@@ -250,21 +255,36 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Custom JS Validation -->
-  <script>
-    document.getElementById("activityForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // prevent default form submission
-      const name = document.getElementById("name").value.trim();
-      const activity = document.getElementById("activity").value.trim();
-      const errorMsg = document.getElementById("errorMsg");
+<script>
+  document.getElementById("activityForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // prevent default form submission
 
-      if (name === "" || activity === "") {
-        errorMsg.style.display = "block"; // show error message
-      } else {
-        errorMsg.style.display = "none"; // hide error message
-        window.location.href = "Submit.html"; // redirect to Submit.html
-      }
-    });
-  </script>
+    const name = document.getElementById("name").value.trim();
+    const activity = document.getElementById("activity").value.trim();
+    const membership = document.getElementById("membership").value.trim();
+    const errorMsg = document.getElementById("errorMsg");
+    const membershipMsg = document.getElementById("membershipMsg");
+
+    // Step 1: Check name and activity first
+    if (name === "" || activity === "") {
+      errorMsg.style.display = "block"; // show error message
+      membershipMsg.textContent = "";   // clear membership message if any
+      return;
+    } else {
+      errorMsg.style.display = "none"; // hide error message
+    }
+
+    // Step 2: Check membership ID validity
+    if (!/^5\d{5}$/.test(membership)) {
+      membershipMsg.textContent = "You are not a member. So, you can't share your idea. Sorry!";
+      return;
+    } else {
+      membershipMsg.textContent = ""; // clear membership error if valid
+    }
+
+    // Step 3: If all checks pass, redirect
+    window.location.href = "Submit.html";
+  });
+</script>
 </body>
 </html>
