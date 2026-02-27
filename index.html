@@ -42,20 +42,19 @@
       width: 45%;
       margin: 10px;
     }
-        @media (max-width: 1100px) {
+    @media (max-width: 1100px) {
       img {
         width: 90%;
       }
     }
-
   </style>
 </head>
 <body>
 
   <div class="login-container">
-  <center>
-    <img src="Logo.png">
-  </center>
+    <center>
+      <img src="Logo.png">
+    </center>
     <h2>Friendship Forever</h2>
     <form id="loginForm">
       <div class="mb-3">
@@ -72,17 +71,26 @@
       </div>
       <div class="mb-3">
         <label for="contact" class="form-label">Contact Number</label>
-        <input type="tel" class="form-control" id="contact" placeholder="Enter your contact number">
+        <input type="number" class="form-control" id="contact" placeholder="Enter your contact number">
+        <small id="contactMessage" class="text-danger"></small>
       </div>
       <div class="mb-3">
         <label for="profession" class="form-label">Profession</label>
         <input type="text" class="form-control" id="profession" placeholder="Enter your profession">
+        <small id="professionMessage" class="text-danger"></small>
       </div>
       <div class="mb-3">
         <label for="idnumber" class="form-label">ID Number</label>
-        <input type="text" class="form-control" id="idnumber" placeholder="Enter your ID number">
+        <input type="number" class="form-control" id="idnumber" placeholder="Enter your ID number">
+        <small id="idMessage" class="text-danger"></small>
       </div>
-      <button type="submit" class="btn btn-custom w-100">Log In</button>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="confirmCheck">
+        <label class="form-check-label" for="confirmCheck">
+          I confirm that all the information provided is correct.
+        </label>
+      </div>
+      <button type="submit" class="btn btn-custom w-100" id="submitBtn">Log In</button>
     </form>
     <div id="message" class="mt-3 text-center"></div>
   </div>
@@ -90,24 +98,106 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    const idInput = document.getElementById("idnumber");
+    const idMessage = document.getElementById("idMessage");
+    const contactInput = document.getElementById("contact");
+    const contactMessage = document.getElementById("contactMessage");
+    const professionInput = document.getElementById("profession");
+    const professionMessage = document.getElementById("professionMessage");
+    const submitBtn = document.getElementById("submitBtn");
+    const confirmCheck = document.getElementById("confirmCheck");
+
+    function validateForm() {
+      const idValue = idInput.value.trim();
+      const contactValue = contactInput.value.trim();
+      const professionValue = professionInput.value.trim().toLowerCase();
+
+      // ID validation
+      if (idValue === "") {
+        idMessage.textContent = "Enter last 5 digits of your PIN";
+        submitBtn.disabled = true;
+        return false;
+      } else if (/^6\d{4}$/.test(idValue)) {
+        idMessage.textContent = "";
+      } else {
+        idMessage.textContent = "You are not allowed to enter! Sorry!";
+        submitBtn.disabled = true;
+        return false;
+      }
+
+      // Contact validation
+      if (!/^\d{11}$/.test(contactValue)) {
+        contactMessage.textContent = "Contact number must be exactly 11 digits.";
+        submitBtn.disabled = true;
+        return false;
+      } else {
+        contactMessage.textContent = "";
+      }
+
+      // Profession validation
+      if (professionValue !== "student") {
+        professionMessage.textContent = "You are not allowed.";
+        submitBtn.disabled = true;
+        return false;
+      } else {
+        professionMessage.textContent = "";
+      }
+
+      // Checkbox validation
+      if (!confirmCheck.checked) {
+        submitBtn.disabled = true;
+        return false;
+      }
+
+      submitBtn.disabled = false;
+      return true;
+    }
+
+    idInput.addEventListener("input", validateForm);
+    contactInput.addEventListener("input", validateForm);
+    professionInput.addEventListener("input", validateForm);
+    confirmCheck.addEventListener("change", validateForm);
+
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
-      
+
       const name = document.getElementById('name').value.trim();
       const gmail = document.getElementById('gmail').value.trim();
       const passcode = document.getElementById('passcode').value.trim();
       const contact = document.getElementById('contact').value.trim();
-      const profession = document.getElementById('profession').value.trim();
+      const profession = document.getElementById('profession').value.trim().toLowerCase();
       const idnumber = document.getElementById('idnumber').value.trim();
 
-      // Check if any field is empty
       if (!name || !gmail || !passcode || !contact || !profession || !idnumber) {
         document.getElementById('message').innerHTML = 
-          `<div class="alert alert-danger">You have to enter all fields before logging in.</div>`;
+          `<div class="alert alert-danger">You must fill in all fields before logging in.</div>`;
         return;
       }
 
-      // If all fields are filled, redirect to Main Page.html
+      if (!/^6\d{4}$/.test(idnumber)) {
+        document.getElementById('message').innerHTML = 
+          `<div class="alert alert-danger">Invalid ID Number. Please follow the instructions.</div>`;
+        return;
+      }
+
+      if (!/^\d{11}$/.test(contact)) {
+        document.getElementById('message').innerHTML = 
+          `<div class="alert alert-danger">Contact number must be exactly 11 digits.</div>`;
+        return;
+      }
+
+      if (profession !== "student") {
+        document.getElementById('message').innerHTML = 
+          `<div class="alert alert-danger">You are not allowed.</div>`;
+        return;
+      }
+
+      if (!confirmCheck.checked) {
+        document.getElementById('message').innerHTML = 
+          `<div class="alert alert-danger">You must confirm that all information is correct before logging in.</div>`;
+        return;
+      }
+
       window.location.href = "Main Page.html";
     });
   </script>
